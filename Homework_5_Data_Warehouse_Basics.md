@@ -88,7 +88,7 @@ LIMIT 5;
 
 - определение количества клиентов каждого статуса, общего количества их заказов, среднего чека для каждой группы клиентов:
 
-SELECT status, COUNT(client_sk) AS clients_in_status, COUNT(orders_sk) AS count_orders_by_status, AVG(price - discount) AS avg_value_by_status
+SELECT status, COUNT(DISTINCT fact_orders.client_sk) AS clients_in_status, COUNT(orders_sk) AS count_orders_by_status, AVG(price - discount) AS avg_value_by_status
 FROM fact_orders INNER JOIN dim_client ON fact_orders.client_sk = dim_client.client_sk
 GROUP BY status 
 ORDER BY avg_value_by_status DESC;

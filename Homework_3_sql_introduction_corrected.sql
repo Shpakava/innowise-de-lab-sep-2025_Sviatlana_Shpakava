@@ -75,7 +75,7 @@ FROM Orders INNER JOIN Customers ON Orders.customer_id = Customers.customer_id I
 WHERE Customers.customer_id IN (SELECT customer
 					  FROM Shippings
 					  WHERE status = 'Delivered')
-	  OR
+	  AND
 	  Customers.customer_id  IN (SELECT customer_id
 					  FROM Orders
 					  GROUP BY customer_id
